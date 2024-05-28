@@ -5,10 +5,13 @@ function mostrarFotos(evt) {
         const fotos = evt.target.response;
         for (const foto of fotos) {
             const img = document.createElement("img");
+            /* Hacemos que las imágenes se carguen de forma perezosa, es decir, solo
+            cuando haga falta mostrarlas al desplazarnos por la página */
             img.setAttribute("loading", "lazy");
             img.setAttribute("src", foto.thumbnailUrl);
             const enlace = document.createElement("a");
             enlace.setAttribute("href", foto.url);
+            /* Mostramos las imágenes en una nueva pestaña nueva */
             enlace.setAttribute("target", "_blank");
             enlace.appendChild(img);
             contenedorFotos.appendChild(enlace);
