@@ -1,5 +1,6 @@
 function mostrarFotos(evt) {
     const contenedorFotos = document.getElementById('contenedorFotos');
+    contenedorFotos.textContent = "";
     if(evt.target.status == 200) {
         const fotos = evt.target.response;
         for (const foto of fotos) {

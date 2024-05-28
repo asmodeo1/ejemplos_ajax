@@ -2,6 +2,7 @@
 function mostrarUsuarios(evt) {
     const peticion = evt.target;
     const usuarios = document.getElementById('usuarios');
+    usuarios.textContent = "";
     if (peticion.status != 200) {
         usuarios.textContent = "Hubo un error: " + peticion.status;
         return;

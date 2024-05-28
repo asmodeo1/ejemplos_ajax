@@ -2,6 +2,7 @@
 function mostrarMensajes(evt) {
     const peticion = evt.target;
     const mensajes = document.getElementById('mensajes');
+    mensajes.textContent = "";
     if(peticion.status != 200) {
         mensajes.textContent = "Hubo un error: " + peticion.status;
         return;

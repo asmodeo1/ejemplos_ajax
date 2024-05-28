@@ -5,6 +5,7 @@ function mostrarProductos(evt) {
         return;
     }
     const contenedorProductos = document.getElementById('contenedorProductos');
+    contenedorProductos.textContent = "";
     for (const producto of peticion.response.products) {
         const div = document.createElement("div");
         div.classList.add("mt-2", "mb-2", "p-2", "bg-info-subtle");
