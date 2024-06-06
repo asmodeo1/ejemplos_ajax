@@ -27,19 +27,22 @@ function mostrarCarritos(carritos) { // carritos es el JSON que devuelve la func
     }
     const contenedorCarrito = document.getElementById("carritos");
     let contenido = "<h2>Carritos</h2>"
+    // Recorremos todos los carritos
     for (const carrito of carritos.carts) {
-        contenido += "<div class='m-2 bg-danger-subtle'>";
+        contenido += `<div class='m-2 p-2 bg-warning-subtle'><h3>Carrito ${carrito.id}</h3>`;
+        // Recorremos todos los productos del carrito
         for (const producto of carrito.products) {
             contenido += `<div class="m-2 bg-info-subtle p-2"><p>Nombre: ${producto.title}</p>`
             + `<p>Precio: ${producto.price}</p>`
             + `<p>Cantidad: ${producto.quantity}</p></div>`;
         }
-        contenido += "</div>"
+        contenido += 
+            `<p>Total: ${carrito.total}</p>`
+            + `<p>Descuento: ${carrito.discountedTotal}</p>`
+            + "</div>"
     }
     contenedorCarrito.innerHTML = contenido;
 }
-
-
 
 function mostrarCarrito(carrito) {
     if(carrito.error != undefined) {
@@ -53,6 +56,10 @@ function mostrarCarrito(carrito) {
             + `<p>Precio: ${producto.price}</p>`
             + `<p>Cantidad: ${producto.quantity}</p></div>`;
     }
+    contenido += 
+        `<p>Total: ${carrito.total}</p>`
+        + `<p>Descuento: ${carrito.discountedTotal}</p>`
+        + "</div>"
     contenedorCarrito.innerHTML = contenido;
 }
 
