@@ -20,9 +20,26 @@ function obtenerRespuestaCarritos(respuesta) {
     }
 }
 
-function mostrarCarritos(carritos) {
-
+function mostrarCarritos(carritos) { // carritos es el JSON que devuelve la función obtenerRespuestaCarritos
+    if(carritos.error != undefined) {
+        alert(carritos.error);
+        return;
+    }
+    const contenedorCarrito = document.getElementById("carritos");
+    let contenido = "<h2>Carritos</h2>"
+    for (const carrito of carritos.carts) {
+        contenido += "<div class='m-2 bg-danger-subtle'>";
+        for (const producto of carrito.products) {
+            contenido += `<div class="m-2 bg-info-subtle p-2"><p>Nombre: ${producto.title}</p>`
+            + `<p>Precio: ${producto.price}</p>`
+            + `<p>Cantidad: ${producto.quantity}</p></div>`;
+        }
+        contenido += "</div>"
+    }
+    contenedorCarrito.innerHTML = contenido;
 }
+
+
 
 function mostrarCarrito(carrito) {
     if(carrito.error != undefined) {
@@ -33,11 +50,11 @@ function mostrarCarrito(carrito) {
     let contenido = "<h2>Productos del carrito</h2>"
     for (const producto of carrito.products) {
         contenido += `<div class="m-2 bg-info-subtle p-2"><p>Nombre: ${producto.title}</p>`
-            + `<p>Precio: ${producto.price}</p></div>`;
+            + `<p>Precio: ${producto.price}</p>`
+            + `<p>Cantidad: ${producto.quantity}</p></div>`;
     }
     contenedorCarrito.innerHTML = contenido;
 }
-
 
 function buscarCarrito() {
     const idCarrito = document.getElementById("idCarrito").value;
