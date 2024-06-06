@@ -1,4 +1,80 @@
 
+function mostrarPieArticulo(contenedorArticulo, articulo) {
+    // Usamos innerHTML para no tener que crear y añadir muchos elementos
+    // en varias líneas de código.
+    // No deberíamos añadir los onclick directamente en HTML, pero como
+    // hemos usado innerHTML lo dejamos así
+    contenedorArticulo.innerHTML += 
+        '<footer><span class="material-symbols-outlined">visibility</span>'
+        + `<span>${articulo.views}</span>`
+        + '<span class="material-symbols-outlined likes" data-like="no">thumb_up</span>'
+        + `<span>${articulo.likes}</span>`
+        + `<span class="material-symbols-outlined eliminar" data-idarticulo="articulo${articulo.id}">delete</span>`
+        + '</footer>';
+    contenedorArticulo.querySelector("span:nth-of-type(3)")
+        .addEventListener("click", subirBajarLikes);
+    contenedorArticulo.querySelector("span:nth-of-type(5)")
+        .addEventListener("click", eliminarArticulo);
+}
+
+function mostrarArticulos(articulos){
+    const contenedorArticulos = document.createElement("section");
+    contenedorArticulos.classList.add("articulos");
+    for (const articulo of articulos) {
+        const contenedorArticulo = document.createElement("div");
+        // Si quisiéramos crear un id
+        contenedorArticulo.setAttribute("id", "articulo" + articulo.id);
+        contenedorArticulo.classList.add("articulo");
+        contenedorArticulo.innerHTML = "<h2>" 
+            + articulo.title.replace("<p>", "").replace("</p>", "") + "</h2>";
+        /* Si nos fiamos del origen y nos valen sus etiquetas, las dejamos
+        /contenedorArticulo.innerHTML += "<p>" 
+            + articulo.body.replaceAll("<p>", "").replaceAll("</p>", "") + "</p>";
+        */
+        contenedorArticulo.innerHTML = articulo.body;
+        mostrarPieArticulo(contenedorArticulo, articulo);
+        contenedorArticulos.appendChild(contenedorArticulo);
+    }
+    return contenedorArticulos;
+}
+
+function mostrarAvatar(autor) {
+    const avatar = document.createElement("img");
+    avatar.setAttribute("src", autor.avatar);
+    avatar.setAttribute("loading", "lazy");
+    return avatar;
+}
+
+function mostrarBotonArticulos() {
+    const boton = document.createElement("a");
+    boton.classList.add("boton");
+    boton.textContent = "Ocultar artículos";
+    boton.addEventListener("click", mostrarOcultarArticulos);
+    return boton;
+}
+
+function mostrarAutor(autor) {
+    const contenedorAutor = document.createElement("section");
+    contenedorAutor.classList.add("autor");
+
+    contenedorAutor.appendChild(mostrarAvatar(autor));
+
+    const contenedorDatosAutor = document.createElement("div");
+    contenedorDatosAutor.classList.add("datosAutor");
+    const nombre = document.createElement("p");
+    nombre.textContent = autor.name;
+    contenedorDatosAutor.appendChild(nombre);
+    const email = document.createElement("p");
+    email.classList.add("email");
+    email.textContent = autor.email;
+    contenedorDatosAutor.appendChild(email);
+
+    contenedorDatosAutor.appendChild(mostrarBotonArticulos());
+    
+    contenedorAutor.appendChild(contenedorDatosAutor);
+    return contenedorAutor;
+}
+
 function mostrarAutoresArticulos(evt) {
     document.getElementById("cargando").remove(); // Eliminamos la imagen
     const peticion = evt.target;
@@ -9,64 +85,8 @@ function mostrarAutoresArticulos(evt) {
 
     const contenedorAutores = document.getElementById("autores");
     for (const autor of peticion.response) {
-        const contenedorAutor = document.createElement("section");
-        contenedorAutor.classList.add("autor");
-        const avatar = document.createElement("img");
-        avatar.setAttribute("src", autor.avatar);
-        avatar.setAttribute("loading", "lazy");
-        contenedorAutor.appendChild(avatar);
-        contenedorAutores.appendChild(contenedorAutor);
-
-        const contenedorDatosAutor = document.createElement("div");
-        contenedorDatosAutor.classList.add("datosAutor");
-        const nombre = document.createElement("p");
-        nombre.textContent = autor.name;
-        contenedorDatosAutor.appendChild(nombre);
-        const email = document.createElement("p");
-        email.classList.add("email");
-        email.textContent = autor.email;
-        contenedorDatosAutor.appendChild(email);
-        const boton = document.createElement("a");
-        boton.classList.add("boton");
-        boton.textContent = "Ocultar artículos";
-        boton.addEventListener("click", mostrarOcultarArticulos);
-        contenedorDatosAutor.appendChild(boton);
-        contenedorAutor.appendChild(contenedorDatosAutor);
-
-        const contenedorArticulos = document.createElement("section");
-        contenedorArticulos.classList.add("articulos");
-        for (const articulo of autor.articles) {
-            const contenedorArticulo = document.createElement("div");
-            // Si quisiéramos crear un id
-            contenedorArticulo.setAttribute("id", "articulo" + articulo.id);
-            contenedorArticulo.classList.add("articulo");
-            contenedorArticulo.innerHTML = "<h2>" 
-                + articulo.title.replace("<p>", "").replace("</p>", "") + "</h2>";
-            /* Si nos fiamos del origen y nos valen sus etiquetas, las dejamos
-            /contenedorArticulo.innerHTML += "<p>" 
-                + articulo.body.replaceAll("<p>", "").replaceAll("</p>", "") + "</p>";
-            */
-                contenedorArticulo.innerHTML = articulo.body;
-
-            // Usamos innerHTML para no tener que crear y añadir muchos elementos
-            // en varias líneas de código.
-            // No deberíamos añadir los onclick directamente en HTML, pero como
-            // hemos usado innerHTML lo dejamos así
-            contenedorArticulo.innerHTML += 
-                '<footer><span class="material-symbols-outlined">visibility</span>'
-                + `<span>${articulo.views}</span>`
-                + '<span class="material-symbols-outlined" data-like="no">thumb_up</span>'
-                + `<span>${articulo.likes}</span>`
-                + `<span class="material-symbols-outlined eliminar" data-idarticulo="articulo${articulo.id}">delete</span>`
-                + '</footer>';
-            contenedorArticulo.querySelector("span:nth-of-type(3)")
-                .addEventListener("click", subirBajarLikes);
-            contenedorArticulo.querySelector("span:nth-of-type(5)")
-                .addEventListener("click", eliminarArticulo);
-
-            contenedorArticulos.appendChild(contenedorArticulo);
-            contenedorAutores.appendChild(contenedorArticulos);
-        }
+        contenedorAutores.appendChild(mostrarAutor(autor));
+        contenedorAutores.appendChild(mostrarArticulos(autor.articles));
     }
 }
 
