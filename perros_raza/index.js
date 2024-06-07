@@ -36,4 +36,3 @@ function obtenerSubrazas() {
     .catch(mostrarError);
 }
 
-document.getElementById("obtenerSubrazas").addEventListener("click", obtenerSubrazas);
