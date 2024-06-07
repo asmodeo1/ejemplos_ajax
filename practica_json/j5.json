@@ -1,0 +1,30 @@
+{
+  "empresa": {
+    "nombre": "Tech Solutions",
+    "ubicacion": {
+      "pais": "España",
+      "ciudad": "Madrid",
+      "direccion": {
+        "calle": "Calle Mayor",
+        "numero": 123,
+        "codigo_postal": "28013"
+      }
+    },
+    "contacto": {
+      "telefono": "555-1234",
+      "email": "info@techsolutions.com",
+      "persona_responsable": {
+        "nombre": "Carlos García",
+        "cargo": "Director General"
+      }
+    },
+    "detalles": {
+      "numero_empleados": 250,
+      "anio_fundacion": 1999,
+      "sectores": {
+        "principal": "Tecnología",
+        "secundario": "Consultoría"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+    "nombre": "Ana García",
+    "edad": 28,
+    "direccion": {
+      "calle": "Avenida Siempre Viva",
+      "numero": 456,
+      "ciudad": "Ciudad Fantasía",
+      "pais": "País Imaginario"
+    },
+    "telefonos": [
+      {
+        "tipo": "casa",
+        "numero": "555-8765"
+      },
+      {
+        "tipo": "móvil",
+        "numero": "555-4321"
+      }
+    ],
+    "email": "ana.garcia@ejemplo.com",
+    "proyectos": [
+      {
+        "nombre": "Proyecto A",
+        "fecha_inicio": "2023-01-15",
+        "equipos": [
+          {
+            "nombre_equipo": "Equipo 1",
+            "miembros": ["Juan", "Pedro", "María"]
+          },
+          {
+            "nombre_equipo": "Equipo 2",
+            "miembros": ["Lucía", "Roberto", "Sofía"]
+          }
+        ]
+      },
+      {
+        "nombre": "Proyecto B",
+        "fecha_inicio": "2024-05-20",
+        "equipos": [
+          {
+            "nombre_equipo": "Equipo 3",
+            "miembros": ["Carlos", "Elena", "Laura"]
+          },
+          {
+            "nombre_equipo": "Equipo 4",
+            "miembros": ["Miguel", "Sara", "Pablo"]
+          }
+        ]
+      }
+    ]
+  }
+  

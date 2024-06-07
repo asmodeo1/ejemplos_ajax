@@ -1,0 +1,43 @@
+[
+    {
+      "nombre": "Madrid",
+      "poblacion": 3223000
+    },
+    {
+      "nombre": "Barcelona",
+      "poblacion": 1636000
+    },
+    {
+      "nombre": "Valencia",
+      "poblacion": 791000
+    },
+    {
+      "nombre": "Sevilla",
+      "poblacion": 688000
+    },
+    {
+      "nombre": "Zaragoza",
+      "poblacion": 675000
+    },
+    {
+      "nombre": "Málaga",
+      "poblacion": 578000
+    },
+    {
+      "nombre": "Murcia",
+      "poblacion": 460000
+    },
+    {
+      "nombre": "Palma",
+      "poblacion": 416000
+    },
+    {
+      "nombre": "Las Palmas de Gran Canaria",
+      "poblacion": 383000
+    },
+    {
+      "nombre": "Bilbao",
+      "poblacion": 345000
+    }
+  ]
+  

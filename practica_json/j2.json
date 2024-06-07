@@ -1,0 +1,20 @@
+{
+    "nombre": "Juan Pérez",
+    "edad": 30,
+    "direccion": {
+      "calle": "Calle Falsa",
+      "numero": 123
+    },
+    "telefonos": [
+      {
+        "tipo": "casa",
+        "numero": "555-1234"
+      },
+      {
+        "tipo": "trabajo",
+        "numero": "555-5678"
+      }
+    ],
+    "email": "juan.perez@ejemplo.com"
+  }
+  
